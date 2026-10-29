@@ -1,0 +1,6 @@
+node_modules
+dist
+.check
+.npm-cache
+.DS_Store
+.preview

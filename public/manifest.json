@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "NetRecorder · 网络请求记录器",
+  "version": "1.0.0",
+  "description": "在指定网站自动记录所有网络请求（URL、请求参数、响应内容），同一请求仅保留一条并覆盖更新。",
+  "minimum_chrome_version": "111",
+  "permissions": ["storage", "unlimitedStorage", "webRequest"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_title": "NetRecorder",
+    "default_popup": "index.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content-inject.js"],
+      "run_at": "document_start",
+      "world": "MAIN",
+      "all_frames": false
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content-bridge.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ]
+}
